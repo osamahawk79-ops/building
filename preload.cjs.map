@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../electron/preload.ts"],
+  "sourcesContent": ["import { contextBridge, ipcRenderer } from 'electron';\n\ncontextBridge.exposeInMainWorld('electron', {\n  send: (channel: string, data: any) => ipcRenderer.send(channel, data),\n  receive: (channel: string, func: (...args: any[]) => void) => {\n    ipcRenderer.on(channel, (event, ...args) => func(...args));\n  },\n});\n"],
+  "mappings": ";AAAA,sBAA2C;AAE3C,8BAAc,kBAAkB,YAAY;AAAA,EAC1C,MAAM,CAAC,SAAiB,SAAc,4BAAY,KAAK,SAAS,IAAI;AAAA,EACpE,SAAS,CAAC,SAAiB,SAAmC;AAC5D,gCAAY,GAAG,SAAS,CAAC,UAAU,SAAS,KAAK,GAAG,IAAI,CAAC;AAAA,EAC3D;AACF,CAAC;",
+  "names": []
+}
