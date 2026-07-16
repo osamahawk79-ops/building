@@ -1,0 +1,6 @@
+{
+  "name": "Building Makers",
+  "description": "منصة تعليمية متكاملة لتقديم المحاضرات المصنفة والاشتراكات الشهرية وإدارتها بالكامل من لوحة التحكم.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

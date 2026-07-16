@@ -1,0 +1,83 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile containing roles and subscription status",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "username": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "subscription": { "type": "string", "enum": ["none", "bronze", "gold"] },
+        "subscriptionStatus": { "type": "string", "enum": ["none", "pending", "active", "blocked"] },
+        "pendingSubscriptionType": { "type": "string", "enum": ["none", "bronze", "gold"] },
+        "paymentTxInfo": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "username", "email", "role", "subscription", "subscriptionStatus"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Educational sections",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name"]
+    },
+    "Lecture": {
+      "title": "Lecture",
+      "description": "Individual lecture item inside a category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "videoUrl": { "type": "string" },
+        "videoProvider": { "type": "string", "enum": ["bunny", "vimeo", "youtube", "raw"] },
+        "fileUrl": { "type": "string" },
+        "fileName": { "type": "string" },
+        "tierRequired": { "type": "string", "enum": ["free", "bronze", "gold"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "categoryId", "title", "videoUrl", "videoProvider", "tierRequired"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Global branding and wallet details",
+      "type": "object",
+      "properties": {
+        "siteName": { "type": "string" },
+        "logoUrl": { "type": "string" },
+        "mainTitle": { "type": "string" },
+        "subTitle": { "type": "string" },
+        "primaryColor": { "type": "string" },
+        "paymentDetails": { "type": "object" }
+      },
+      "required": ["siteName"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User records"
+    },
+    "/categories/{categoryId}": {
+      "schema": { "$ref": "#/entities/Category" },
+      "description": "Main sections of the LMS"
+    },
+    "/lectures/{lectureId}": {
+      "schema": { "$ref": "#/entities/Lecture" },
+      "description": "Lectures of the LMS"
+    },
+    "/settings/{settingsId}": {
+      "schema": { "$ref": "#/entities/Settings" },
+      "description": "Branding and site-wide settings document"
+    }
+  }
+}

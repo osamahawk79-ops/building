@@ -1,0 +1,24 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# ملفات التطوير المحلية - لا يجب رفعها على GitHub
+deployment.zip
+
+# قاعدة البيانات والملفات المرفوعة (تُدار على السيرفر فقط)
+data/backups/
+storage/videos/
+storage/attachments/
+storage/thumbnails/
+storage/branding/
+
+# ملفات Electron المُنتجة
+dist/electron-build/
+
+# ملف temp لجهاز المطور
+scratch/
